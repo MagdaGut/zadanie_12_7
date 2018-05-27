@@ -3,7 +3,7 @@ function Card(id, name) {
     var self = this;
     
     this.id = id;
-    this.description = name || "Nie podano nazwy";
+    this.name = name || "Nie podano nazwy";
     this.element = createCard();
 
     function createCard() {
@@ -18,9 +18,11 @@ function Card(id, name) {
         card.append(cardDeleteBtn);
         cardDescription.text(self.name);
         card.append(cardDescription)
+        
         return card;
     }
 }
+
 Card.prototype = {
     removeCard: function() {
         var self = this;
@@ -28,7 +30,7 @@ Card.prototype = {
             url: baseUrl + '/card/' + self.id,
             method: 'DELETE',
             success: function(){
-            self.$element.remove();
+            self.element.remove();
           }
         });
     }
